@@ -6,12 +6,15 @@ let image=document.querySelector("img");
 let allAnswers=document.querySelectorAll("ul li p");
 let nextBtn=document.querySelector("input[value=Next]");
 let time=document.querySelector(".time");
+let result=document.querySelector(".result");
+let resultText=document.querySelector(".percentage");
+let scoringResult=document.querySelector(".scoring");
 let timeLeft=60;
-
-
-let isAnswer=false;
+let minute=1;
+let current_Quiz=0;
+let score=0;
+let percentageResult=0;
 nextBtn.disabled=true;
-console.log(nextBtn)
 let studentName = "";
 
 Swal.fire({
@@ -35,9 +38,7 @@ Swal.fire({
   }
 });
 
-console.log(questions)
-let current_Quiz=0;
-let score=0;
+
 
 function shuffleArray(input) {
     //search
@@ -48,21 +49,20 @@ const shuffledQuestions = shuffleArray(questions);
 let timeInterval;
 
 function startTime(){
-    timeLeft=60;
-    //clear any existing time interval
+  time.innerHTML=`You have 0${minute}:00 to finish`;
     clearInterval(timeInterval);
     timeInterval=setInterval(() => {
-        if(timeLeft<10){
-            time.innerHTML=`00:0${timeLeft--}`;
-        }else{
-            time.innerHTML=`00:${timeLeft--}`;
+      if (timeLeft<=0) {
+        clearInterval(timeInterval);
+        showResult();
+        //goToNextQuestion(); 
+      } else {
+        if (timeLeft<10) {
+          time.innerHTML = `You have 00:0${timeLeft--} to finish`;
+        } else {
+          time.innerHTML = `You have 00:${timeLeft--} to finish`;
         }
-       
-        if(timeLeft===0){
-          clearInterval(timeInterval);
-          goToNextQuestion();
-        }
-        
+      }
     }, 1000);
     
  
@@ -70,53 +70,31 @@ function startTime(){
 function goToNextQuestion(){
     if(current_Quiz<shuffledQuestions.length-1){
         current_Quiz++;
-
         loadQuiz();
-        isAnswer=false;
         nextBtn.disabled=true;
-        startTime();
     }else{
         clearInterval(timeInterval);
-        Swal.fire("Quiz Complete!", `You scored ${score} points!`, "success");
+        showResult();
+        //Swal.fire("Quiz Complete!", `${studentName}, You have ${score} out of ${questions.length} correct answers`,"percentage");
     }
 }
 function loadQuiz(){
-     const currentQuizData=shuffledQuestions[current_Quiz];
-   question.innerHTML=currentQuizData.question;
-   const answers=shuffleArray([
+    const currentQuizData=shuffledQuestions[current_Quiz];
+    question.innerHTML=currentQuizData.question;
+    const answers=shuffleArray([
     {
     text:currentQuizData.answer1,
-    id:'answer1'
    },
    {
     text:currentQuizData.answer2,
-    id:'answer2',
    },
    {
     text:currentQuizData.answer3,
-    id:"answer3"
    }
    ])
-   
    image.src=currentQuizData.image;
    allAnswers.forEach((answer,index) => {
     answer.innerHTML=answers[index].text;
-    
-    answer.addEventListener("click",function(){
-        if(isAnswer){
-           return;
-       }
-       else if(answers[index].id===currentQuizData.correctAnswer){  
-           console.log("correct")
-           score++;
-           console.log("score",score);
-           isAnswer=true;
-       } 
-     })
-    
-
-        
-    
     answer.style.backgroundColor = "inherit";
   });
 }
@@ -133,15 +111,44 @@ startBtn.addEventListener('click', function() {
   
 });
 
-for (let i=0; i<allAnswers.length; i++) {
-    allAnswers[i].addEventListener("click", function (event) {
-      nextBtn.disabled=false;
-      allAnswers.forEach((answer) => (answer.style.backgroundColor = ""));
+let selectAnswer=undefined;
+allAnswers.forEach((answer)=>{
+  answer.addEventListener("click",function(event){
+    selectAnswer=event.target.innerText;
+    nextBtn.disabled=false;
+    allAnswers.forEach((answer)=>answer.style.backgroundColor="");
+    event.target.style.backgroundColor="rgb(248, 204, 109)";
+    
+  })
+})
 
-      event.target.style.backgroundColor = "rgb(248, 204, 109)";
-      
-    });
+nextBtn.addEventListener("click",function(){
+  const current_Quiz_Data=shuffledQuestions[current_Quiz];
+  if(selectAnswer===current_Quiz_Data.correctAnswer){
+    score++;
+    percentageResult+=10;
+    console.log(percentageResult,score)
   }
+  selectAnswer=undefined;
+  goToNextQuestion();
+})
 
+function showResult(){
+  enterQuiz.classList.remove("show_quiz");
+  result.classList.remove("result");
+  result.classList.add("show_result");
+  resultText.innerText=`${percentageResult}%`
+  if (percentageResult > 0) resultText.style.borderTopColor = "green";
+  if (percentageResult >= 50) resultText.style.borderRightColor = "green";
+  if (percentageResult >= 70) resultText.style.borderBottomColor = "green"; 
+  if (percentageResult === 100) resultText.style.borderLeftColor = "green";
+  scoringResult.innerText=`You have ${score} out of ${questions.length} correct Answers, ${studentName}`;
+  let tryagainButton=document.createElement("button");
+  tryagainButton.innerText="Try Again";
+  scoringResult.append(tryagainButton);
+  tryagainButton.addEventListener("click",function(){
+    location.reload();
+  })
 
-nextBtn.addEventListener("click",goToNextQuestion)
+  
+}

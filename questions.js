@@ -5,8 +5,8 @@ export const questions=[
         question:"what is the behaviour of Cat ??",
         answer1:"Cats is So dangerous",
         answer2:"Cats behave so weird to their owner",
-        answer3:"Cats is So cute",
-        correctAnswer:"answer3"
+        answer3:"Cats are So cute",
+        correctAnswer:"Cats are So cute"
     
     },
     {
@@ -17,7 +17,7 @@ export const questions=[
         answer1:"They can purr like cats",
         answer2:"They have four legs.",
         answer3:"They all have blue fur.",
-        correctAnswer:"answer2"
+        correctAnswer:"They have four legs."
 
     },
     {
@@ -27,7 +27,7 @@ export const questions=[
         answer1:"Green",
         answer2:"Purple",
         answer3:"Blue",
-        correctAnswer:"answer3"
+        correctAnswer:"Blue"
     },
     {
         title:"Green Color",
@@ -36,7 +36,7 @@ export const questions=[
         answer1: "A carrot",
         answer2:"Grass", 
         answer3:"The sky",
-        correctAnswer:"answer2"
+        correctAnswer:"Grass"
         
     },
     {
@@ -46,7 +46,7 @@ export const questions=[
         answer1:"Banana",
         answer2:"Orange",
         answer3:"Apple",
-        correctAnswer:"answer2"
+        correctAnswer:"Orange"
     },
     {
         title:"Elephant",
@@ -55,7 +55,7 @@ export const questions=[
         answer1:"They have trunks",
         answer2:"They can fly",
         answer3:"They have stripes",
-        correctAnswer:"answer1"
+        correctAnswer:"They have trunks"
     },
     {
         title:"Zebra",
@@ -64,7 +64,7 @@ export const questions=[
         answer1:"Solid White Color",
         answer2:"Big ears like elephants",
         answer3:"Stripes",
-        correctAnswer:"answer3"
+        correctAnswer:"Stripes"
     },
     {
         title:"pump jacket",
@@ -73,7 +73,7 @@ export const questions=[
         answer1:"Providing warmth in cold weather",
         answer2:"Being waterproof for swimming",
         answer3:"used as formal wear",
-        correctAnswer:"answer1"
+        correctAnswer:"Providing warmth in cold weather"
    
     },
     {
@@ -83,7 +83,7 @@ export const questions=[
         answer1:"Red",
         answer2:"Yellow",
         answer3:"Orange",
-        correctAnswer:"answer3"
+        correctAnswer:"Orange"
     },
     {
         title:"Hoodie",
@@ -92,7 +92,7 @@ export const questions=[
         answer1:"It has a zipper",
         answer2:"It has no sleeves",
         answer3:"It has a hood",
-        correctAnswer:"answer3"
+        correctAnswer:"It has a hood"
     },
 
 
