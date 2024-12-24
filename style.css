@@ -1,0 +1,118 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+IE+Guides&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body{
+    background-color: #a8dadc;
+    
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    font-family: "Roboto", serif;
+    margin:0;
+}
+.start-container{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#start-button{
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color:white;
+    border:none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+
+}
+#start-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+.quiz_container{
+    display: none;
+}
+
+.show_quiz{
+    display: inline;
+}
+.quiz_container{
+    position: relative;
+    background-color: #f1faee;
+    width: 700px;
+    max-width: 100%;
+    box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
+    overflow: hidden;
+    border-radius: 10px;
+}
+.time{
+    position: absolute;
+    right: 0;
+    padding-right: 20px;
+    color:red;
+    font-size:20px;
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.quiz_header{
+    padding:4rem;
+}
+h1{
+    text-align: center;
+    padding:1rem;
+    margin:0;
+
+}
+ul{
+    list-style-type: none;
+    padding:0;
+}
+ul li{
+    margin:30px;
+    font-size:18px;
+}
+ul li p{
+
+    padding:13px 0;
+    border:2px solid rgb(56, 77, 88);
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: italic;
+    cursor: pointer;
+
+}
+
+input[type="submit"]{
+    background-color: #457b9d;
+    border:none;
+    width:100%;
+    display:block;
+    padding:20px;
+    font-size: 20px;
+    font-weight:600;
+    font-family: inherit;
+}
+input[type="submit"]:not(:disabled):hover{
+    cursor: pointer;
+    background-color: #18435d;
+    color:white
+}
+input[type="submit"]:focus{
+    outline:none;
+}
+
+.image-container{
+    text-align: center;
+}
+img{
+    width: 300px;
+    height: 200px;
+}
