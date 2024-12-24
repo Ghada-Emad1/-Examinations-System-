@@ -11,25 +11,35 @@
 
 <body>
     <div class="start-container">
-        <button id="start-button" disabled>Start</button>
+        <button id="start-button" disabled>Start Exam</button>
+        <div class="result">
+            <div class="percentage">
+                <div class="perRes">
+                    <p></p>
+                </div>
+                
+            </div>
+            <div class="scoring"></div>
+        </div>
     </div>
     <div class="quiz_container" id="quiz">
+
         <p class="time"></p>
         <div class="quiz_header">
             <div class="image-container">
-                <img src="" alt="" >
+                <img src="" alt="">
             </div>
-            
+
             <h1 id="question">Question Text</h1>
             <ul>
                 <li>
-                    <p >Answer1</p>
+                    <p>Answer1</p>
                 </li>
                 <li>
-                   <p >Answer2</p>
+                    <p>Answer2</p>
                 </li>
                 <li>
-                   <p >Answer3</p>
+                    <p>Answer3</p>
                 </li>
 
             </ul>
@@ -37,9 +47,7 @@
             <input type="submit" value="Next">
 
         </div>
-        
-        
-        
+
         <script type="module" src="questions.js"></script>
         <script type="module" src="script.js"></script>
 </body>
