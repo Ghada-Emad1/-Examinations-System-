@@ -41,7 +41,6 @@ Swal.fire({
 
 
 function shuffleArray(input) {
-    //search
     return input.sort(() => Math.random()-0.5);
 }
 
