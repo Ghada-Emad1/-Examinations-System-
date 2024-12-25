@@ -48,16 +48,7 @@ body{
   font-weight: 400;
   font-style: normal;
 }
-.time{
-    position: absolute;
-    right: 0;
-    padding-right: 20px;
-    color:red;
-    font-size:18px;
-    font-family: "Roboto", serif;
-    font-weight: 400;
-    font-style: italic;
-}
+
 
 .quiz_header{
     padding: 30px;
@@ -175,3 +166,20 @@ button:hover{
     cursor: pointer;
 }
   
+  
+.timer-container {
+    width: 900px;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+  
+.timer-bar {
+    height: 100%;
+    width: 0%;
+    background-color: rgb(248, 204, 109);
+    transition: width 0.1s linear;
+    
+}

@@ -5,12 +5,12 @@ let question=document.querySelector("#question");
 let image=document.querySelector("img");
 let allAnswers=document.querySelectorAll("ul li p");
 let nextBtn=document.querySelector("input[value=Next]");
-let time=document.querySelector(".time");
 let result=document.querySelector(".result");
 let resultText=document.querySelector(".percentage");
 let scoringResult=document.querySelector(".scoring");
-let timeLeft=60;
-let minute=1;
+const timerBar = document.querySelector('#timer-bar');
+let totalTime = 60;
+let timeLeft = totalTime;
 let current_Quiz=0;
 let score=0;
 let percentageResult=0;
@@ -45,37 +45,17 @@ function shuffleArray(input) {
 }
 
 const shuffledQuestions = shuffleArray(questions);
-let timeInterval;
 
-function startTime(){
-  time.innerHTML=`You have 0${minute}:00 to finish`;
-    clearInterval(timeInterval);
-    timeInterval=setInterval(() => {
-      if (timeLeft<=0) {
-        clearInterval(timeInterval);
-        showResult();
-        //goToNextQuestion(); 
-      } else {
-        if (timeLeft<10) {
-          time.innerHTML = `You have 00:0${timeLeft--} to finish`;
-        } else {
-          time.innerHTML = `You have 00:${timeLeft--} to finish`;
-        }
-      }
-    }, 1000);
-    
- 
-}
+let timerInterval;
 function goToNextQuestion(){
     if(current_Quiz<shuffledQuestions.length-1){
         current_Quiz++;
         loadQuiz();
         nextBtn.disabled=true;
     }else{
-        clearInterval(timeInterval);
+        clearInterval(timerInterval);
         showResult();
-        //Swal.fire("Quiz Complete!", `${studentName}, You have ${score} out of ${questions.length} correct answers`,"percentage");
-    }
+ }
 }
 function loadQuiz(){
     const currentQuizData=shuffledQuestions[current_Quiz];
@@ -106,7 +86,7 @@ startBtn.addEventListener('click', function() {
     startBtn.disabled=true;
     startBtn.style.display="none";
     loadQuiz();
-    startTime();
+    startTimer();
   
 });
 
@@ -150,4 +130,19 @@ function showResult(){
   })
 
   
+}
+
+function startTimer() {
+    timeLeft = totalTime; 
+    timerBar.style.width = '0%'; 
+
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        const percentage = ((totalTime - timeLeft) / totalTime) * 100;
+        timerBar.style.width = percentage + '%';
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            showResult();
+        }
+    }, 1000); 
 }
